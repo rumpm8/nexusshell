@@ -1,0 +1,16 @@
+node_modules/
+dist/
+src-tauri/target/
+src-tauri/gen/
+*.db
+.DS_Store
+social-media-api/
+
+# secrets / local config — never commit
+.env
+.env.*
+config.env
+*.local
+*.key
+*.pem
+*.log

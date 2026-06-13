@@ -1,0 +1,32 @@
+[package]
+name = "nexus-shell"
+version = "0.1.0"
+description = "Nexus Shell — AI agent workspace desktop app"
+authors = ["Nexus Shell contributors"]
+edition = "2021"
+
+[lib]
+name = "nexus_shell_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+# "unstable" unlocks child webviews (multiwebview) — used to mount the
+# Odysseus workspace natively inside the main window
+tauri = { version = "2", features = ["unstable"] }
+tauri-plugin-sql = { version = "2", features = ["sqlite"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+# macOS Keychain access — secrets never touch disk in plaintext
+keyring = { version = "3", features = ["apple-native"] }
+# Anthropic Messages API calls happen in Rust — the key never enters the webview
+reqwest = { version = "0.12", features = ["json"] }
+walkdir = "2"
+# OAuth loopback flow: open system browser, PKCE, URL encoding
+open = "5"
+rand = "0.8"
+sha2 = "0.10"
+base64 = "0.22"
+urlencoding = "2"
